@@ -1,0 +1,13 @@
+# Scraped raw problem statements (not for public distribution)
+.raw_problems/
+
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.dSYM/
+a.out
+
+# macOS
+.DS_Store
