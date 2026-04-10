@@ -20,29 +20,24 @@
 #include <stdio.h>
 
 int main(void) {
-    int n;      /* 要輸入的整數個數 */
+    int N;      /* 起始整數 */
+    int M;      /* 結束整數 */
     int i;      /* 迴圈計數器 */
-    int num;    /* 每次讀入的整數 */
-    int sum;    /* 正整數的累計總和 */
+    long long sum;  /* 累計總和（使用 long long 避免溢位） */
 
-    /* 讀入整數個數 */
-    scanf("%d", &n);
+    /* 讀入起始與結束整數 */
+    scanf("%d %d", &N, &M);
 
     /* 初始化總和為 0 */
     sum = 0;
 
-    /* 迴圈讀入 n 個整數 */
-    for (i = 0; i < n; i++) {
-        scanf("%d", &num);
-
-        /* 只將正整數加入總和（忽略負數和零） */
-        if (num > 0) {
-            sum = sum + num;
-        }
+    /* 累加從 N 到 M 的所有整數 */
+    for (i = N; i <= M; i++) {
+        sum += i;
     }
 
-    /* 輸出正整數總和 */
-    printf("%d\n", sum);
+    /* 輸出總和 */
+    printf("%lld\n", sum);
 
     return 0;
 }

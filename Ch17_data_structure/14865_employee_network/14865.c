@@ -57,6 +57,8 @@ static int find_by_id(int id) {
 
 /* 查詢同事：與指定員工有相同直屬上司的人（排除自身及頂層老闆） */
 static void query_colleagues(int idx) {
+    /* 若指定員工本身是頂層老闆（無有效直屬上司），則沒有同事 */
+    if (emp[idx].id == emp[idx].boss_id) return;
     int boss = emp[idx].boss_id;
     for (int i = 0; i < n; ++i) {
         if (i == idx) continue;                      /* 排除自身 */

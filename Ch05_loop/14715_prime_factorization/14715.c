@@ -32,8 +32,8 @@ int main(void) {
     /* 讀入正整數 */
     scanf("%lld", &n);
 
-    /* 從 2 開始嘗試每個因數 */
-    for (factor = 2; n > 1; factor++) {
+    /* 從 2 開始嘗試每個因數，只需試到 sqrt(n) */
+    for (factor = 2; factor * factor <= n; factor++) {
         if (n % factor == 0) {
             /* 找到因數，計算指數 */
             exponent = 0;
@@ -44,6 +44,10 @@ int main(void) {
             /* 輸出「質因數 指數 」（trailing space） */
             printf("%lld %d ", factor, exponent);
         }
+    }
+    /* 若 n > 1，代表 n 本身是質因數 */
+    if (n > 1) {
+        printf("%lld %d ", n, 1);
     }
     printf("\n");
 
