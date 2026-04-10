@@ -45,7 +45,7 @@ int exit_window(int row, int col, int dir) {
 
     /* 從左邊出去（col == -1，方向向左） */
     if (dir == LEFT)
-        return W + (D - 1 - row); /* 右邊窗口（注意：光線離開右邊需從右邊出去） */
+        return 2 * W + D + row; /* 左邊窗口 2W+D..2W+2D-1（由上到下） */
 
     /* 從頂部出去（row == -1，方向向上） */
     if (dir == UP)
@@ -53,7 +53,7 @@ int exit_window(int row, int col, int dir) {
 
     /* 從右邊出去（col == W，方向向右） */
     /* dir == RIGHT */
-    return 2 * W + D + row; /* 左邊窗口 */
+    return W + (D - 1 - row); /* 右邊窗口 W..W+D-1（由下到上） */
 }
 
 /* 模擬光線從窗口 w 進入，返回出去的窗口編號 */
