@@ -1,7 +1,7 @@
 # EE2310 C 程式設計 參考解答（2025）
 
 <p align="center">
-  <img src="cover.webp" alt="由片語學習C程式設計（第二版）" width="200"/>
+  <img src="cover.jpg" alt="由片語學習C程式設計（第二版）" width="200"/>
 </p>
 
 NTHU EE2310（2025 年度）《由片語學習C程式設計（第二版）》課程的 C 語言參考解答，依照課本章節分類整理。
