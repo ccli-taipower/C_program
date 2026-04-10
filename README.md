@@ -147,13 +147,18 @@ gcc -std=c99 -o out NNNNN.c -lm
 | [14846](Ch17_data_structure/14846_event_triggering/14846.c) | Event triggering logic inference | [🔗](https://acm.cs.nthu.edu.tw/problem/14846/) |
 | [14847](Ch17_data_structure/14847_bst_subtree_size/14847.c) | BST subtree size computation | [🔗](https://acm.cs.nthu.edu.tw/problem/14847/) |
 | [14849](Ch17_data_structure/14849_bookshelf_linked_list/14849.c) | Bookshelf management (linked list) | [🔗](https://acm.cs.nthu.edu.tw/problem/14849/) |
-| [14858](Ch17_data_structure/14858_expression_calculator/14858.c) | Expression calculator | [🔗](https://acm.cs.nthu.edu.tw/problem/14858/) |
 | [14859](Ch17_data_structure/14859_kth_smallest_bst/14859.c) | k-th smallest in BST | [🔗](https://acm.cs.nthu.edu.tw/problem/14859/) |
 | [14863](Ch17_data_structure/14863_kth_biggest_bst/14863.c) | k-th biggest in BST | [🔗](https://acm.cs.nthu.edu.tw/problem/14863/) |
 | [14864](Ch17_data_structure/14864_map_color/14864.c) | Map color (graph coloring) | [🔗](https://acm.cs.nthu.edu.tw/problem/14864/) |
 | [14865](Ch17_data_structure/14865_employee_network/14865.c) | Employee network | [🔗](https://acm.cs.nthu.edu.tw/problem/14865/) |
 | [14871](Ch17_data_structure/14871_queue_operations/14871.c) | Queue operations | [🔗](https://acm.cs.nthu.edu.tw/problem/14871/) |
 | [14874](Ch17_data_structure/14874_build_binary_tree/14874.c) | Build binary tree | [🔗](https://acm.cs.nthu.edu.tw/problem/14874/) |
+
+### Ch18 — 物件
+
+| 題號 | 題目 | 題目連結 |
+|------|------|----------|
+| [14858](Ch18_object/14858_expression_calculator/14858.c) | Expression calculator | [🔗](https://acm.cs.nthu.edu.tw/problem/14858/) |
 
 ---
 
