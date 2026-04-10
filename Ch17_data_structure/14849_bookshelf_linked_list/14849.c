@@ -30,10 +30,11 @@
 
 #define MAXN 1025   /* 書號最大值 + 1 */
 #define MAXM 129    /* 書架最大容量 + 1 */
+#define MAXSENTINEL (MAXN + 2)  /* 哨兵節點所需的額外空間 */
 
 /* 佇列以雙向鏈結串列實作，節點 0 為哨兵頭節點 */
-static int nxt[MAXN];     /* nxt[i]：節點 i 的下一個節點 */
-static int prv[MAXN];     /* prv[i]：節點 i 的前一個節點 */
+static int nxt[MAXSENTINEL];     /* nxt[i]：節點 i 的下一個節點 */
+static int prv[MAXSENTINEL];     /* prv[i]：節點 i 的前一個節點 */
 static int on_shelf[MAXN]; /* on_shelf[i]：書號 i 是否在書架上 */
 
 /* 書架順序陣列（用於最終輸出） */

@@ -8,30 +8,40 @@
  * 【題目連結】https://acm.cs.nthu.edu.tw/problem/14742/
  *
  * 【題目說明】
- * 輸入兩個浮點數座標點 (x1, y1) 和 (x2, y2)，
+ * 輸入兩個以極座標表示的點 (r1, theta1) 和 (r2, theta2)（theta 單位為度），
  * 計算並輸出兩點之間的歐幾里得距離，結果保留 4 位小數。
- *   距離公式：sqrt((x2-x1)^2 + (y2-y1)^2)
  *
  * 【解題策略】
- * 1. 讀入兩個浮點數座標點
- * 2. 計算 x 方向的差距 dx = x2 - x1
- * 3. 計算 y 方向的差距 dy = y2 - y1
- * 4. 利用畢氏定理：distance = sqrt(dx*dx + dy*dy)
- * 5. 使用 sqrt() 函數需要引入 <math.h>
- * 6. 輸出保留 4 位小數
+ * 1. 讀入兩個極座標點 (r1, theta1) 和 (r2, theta2)
+ * 2. 將極座標轉換為直角座標：
+ *    x = r * cos(theta * PI / 180)
+ *    y = r * sin(theta * PI / 180)
+ * 3. 利用畢氏定理：distance = sqrt((x2-x1)^2 + (y2-y1)^2)
+ * 4. 使用 sqrt()、cos()、sin() 函數需要引入 <math.h>
+ * 5. 輸出保留 4 位小數
  */
 #include <stdio.h>
-#include <math.h>  /* 使用 sqrt() 函數需要此標頭檔 */
+#include <math.h>  /* 使用 sqrt(), cos(), sin() 函數需要此標頭檔 */
+
+#define PI 3.14159265358979323846
 
 int main(void) {
-    double x1, y1;  /* 第一個點的座標（浮點數） */
-    double x2, y2;  /* 第二個點的座標（浮點數） */
-    double dx;      /* x 方向的差距 */
-    double dy;      /* y 方向的差距 */
-    double dist;    /* 兩點之間的距離 */
+    double r1, theta1;  /* 第一個點的極座標 */
+    double r2, theta2;  /* 第二個點的極座標 */
+    double x1, y1;      /* 第一個點的直角座標 */
+    double x2, y2;      /* 第二個點的直角座標 */
+    double dx;          /* x 方向的差距 */
+    double dy;          /* y 方向的差距 */
+    double dist;        /* 兩點之間的距離 */
 
-    /* 讀入兩個座標點（浮點數用 %lf） */
-    scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
+    /* 讀入兩個極座標點（浮點數用 %lf） */
+    scanf("%lf %lf %lf %lf", &r1, &theta1, &r2, &theta2);
+
+    /* 將極座標轉換為直角座標 */
+    x1 = r1 * cos(theta1 * PI / 180.0);
+    y1 = r1 * sin(theta1 * PI / 180.0);
+    x2 = r2 * cos(theta2 * PI / 180.0);
+    y2 = r2 * sin(theta2 * PI / 180.0);
 
     /* 計算 x 和 y 方向的差距 */
     dx = x2 - x1;
