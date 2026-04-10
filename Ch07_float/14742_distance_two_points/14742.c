@@ -8,22 +8,20 @@
  * 【題目連結】https://acm.cs.nthu.edu.tw/problem/14742/
  *
  * 【題目說明】
- * 輸入兩個以極座標表示的點 (r1, theta1) 和 (r2, theta2)（theta 單位為度），
- * 計算並輸出兩點之間的歐幾里得距離，結果保留 4 位小數。
+ * 輸入兩個以極座標表示的點 (r1, theta1) 和 (r2, theta2)（theta 單位為弧度），
+ * 計算並輸出兩點之間的歐幾里得距離，結果保留 6 位小數。
  *
  * 【解題策略】
  * 1. 讀入兩個極座標點 (r1, theta1) 和 (r2, theta2)
- * 2. 將極座標轉換為直角座標：
- *    x = r * cos(theta * PI / 180)
- *    y = r * sin(theta * PI / 180)
+ * 2. 將極座標轉換為直角座標（theta 已是弧度，直接使用）：
+ *    x = r * cos(theta)
+ *    y = r * sin(theta)
  * 3. 利用畢氏定理：distance = sqrt((x2-x1)^2 + (y2-y1)^2)
  * 4. 使用 sqrt()、cos()、sin() 函數需要引入 <math.h>
- * 5. 輸出保留 4 位小數
+ * 5. 輸出保留 6 位小數
  */
 #include <stdio.h>
 #include <math.h>  /* 使用 sqrt(), cos(), sin() 函數需要此標頭檔 */
-
-#define PI 3.14159265358979323846
 
 int main(void) {
     double r1, theta1;  /* 第一個點的極座標 */
@@ -37,11 +35,11 @@ int main(void) {
     /* 讀入兩個極座標點（浮點數用 %lf） */
     scanf("%lf %lf %lf %lf", &r1, &theta1, &r2, &theta2);
 
-    /* 將極座標轉換為直角座標 */
-    x1 = r1 * cos(theta1 * PI / 180.0);
-    y1 = r1 * sin(theta1 * PI / 180.0);
-    x2 = r2 * cos(theta2 * PI / 180.0);
-    y2 = r2 * sin(theta2 * PI / 180.0);
+    /* 將極座標轉換為直角座標（theta 單位為弧度，直接使用） */
+    x1 = r1 * cos(theta1);
+    y1 = r1 * sin(theta1);
+    x2 = r2 * cos(theta2);
+    y2 = r2 * sin(theta2);
 
     /* 計算 x 和 y 方向的差距 */
     dx = x2 - x1;
@@ -50,8 +48,8 @@ int main(void) {
     /* 利用畢氏定理計算距離 */
     dist = sqrt(dx * dx + dy * dy);
 
-    /* 輸出距離，保留 4 位小數 */
-    printf("%.4f\n", dist);
+    /* 輸出距離，保留 6 位小數 */
+    printf("%.6f\n", dist);
 
     return 0;
 }
