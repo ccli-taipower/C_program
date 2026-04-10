@@ -19,6 +19,24 @@
  *
  * 【解題策略】
  * 以陣列儲存所有員工，依題目需求實作三個查詢函式。
+ *
+ * 【解題流程 / Solution Walkthrough】
+ *
+ * 中文說明：
+ * 1. 讀取 n 筆員工資料（id、firstname、lastname、boss_id），儲存於靜態陣列 emp[]。
+ * 2. 讀取 m 筆查詢，每筆格式為「名 姓 k」，呼叫 find_by_name() 找到對應員工索引 idx。
+ * 3. 若 k==1（同事查詢）：呼叫 query_colleagues(idx)，遍歷所有員工，找出 boss_id 相同但非自身且非頂層老闆的員工並輸出。
+ * 4. 若 k==2（上司鏈查詢）：呼叫 query_supervisors(idx)，從該員工的直屬上司開始，沿 boss_id 鏈向上走訪直到頂層老闆，逐一輸出姓名。
+ * 5. 若 k==3（下屬查詢）：呼叫 query_subordinates(idx)，以 DFS 遞迴遍歷所有直接下屬，再對每位下屬繼續遞迴，按輸入順序輸出所有下屬姓名。
+ * 6. 三種查詢均以線性掃描陣列實作，適合員工數量較少的場景（MAXN=256）。
+ *
+ * English:
+ * 1. Read n employee records (id, firstname, lastname, boss_id) into static array emp[].
+ * 2. Read m queries, each in the format "firstname lastname k"; call find_by_name() to get the employee's array index idx.
+ * 3. If k==1 (colleagues query): call query_colleagues(idx), scan all employees for those sharing the same boss_id but excluding self and top-level bosses.
+ * 4. If k==2 (supervisors query): call query_supervisors(idx), walk up the boss_id chain from the direct boss until reaching the top-level boss, printing each name.
+ * 5. If k==3 (subordinates query): call query_subordinates(idx), recursively DFS to find all direct reports and their reports in input order.
+ * 6. All three queries use linear array scans, appropriate for small employee counts (MAXN=256).
  */
 #include <stdio.h>
 #include <string.h>
@@ -33,10 +51,10 @@ typedef struct {
     int boss_id;
 } Employee;
 
-static Employee emp[MAXN];   /* 員工陣列 */
-static int n;                /* 員工總數 */
+static Employee emp[MAXN];   /* 員工陣列 / employee array */
+static int n;                /* 員工總數 / total number of employees */
 
-/* 依姓名尋找員工的陣列索引；找不到回傳 -1 */
+/* 依姓名尋找員工的陣列索引；找不到回傳 -1 / find employee array index by name; return -1 if not found */
 static int find_by_name(const char *fn, const char *ln) {
     for (int i = 0; i < n; ++i) {
         if (strcmp(emp[i].firstname, fn) == 0 &&
@@ -47,7 +65,7 @@ static int find_by_name(const char *fn, const char *ln) {
     return -1;
 }
 
-/* 依員工編號尋找陣列索引；找不到回傳 -1 */
+/* 依員工編號尋找陣列索引；找不到回傳 -1 / find array index by employee ID; return -1 if not found */
 static int find_by_id(int id) {
     for (int i = 0; i < n; ++i) {
         if (emp[i].id == id) return i;
@@ -55,21 +73,21 @@ static int find_by_id(int id) {
     return -1;
 }
 
-/* 查詢同事：與指定員工有相同直屬上司的人（排除自身及頂層老闆） */
+/* 查詢同事：與指定員工有相同直屬上司的人（排除自身及頂層老闆） / query colleagues: employees sharing the same direct boss (excluding self and top boss) */
 static void query_colleagues(int idx) {
-    /* 若指定員工本身是頂層老闆（無有效直屬上司），則沒有同事 */
+    /* 若指定員工本身是頂層老闆（無有效直屬上司），則沒有同事 / if the employee is a top-level boss (no valid direct supervisor), no colleagues */
     if (emp[idx].id == emp[idx].boss_id) return;
     int boss = emp[idx].boss_id;
     for (int i = 0; i < n; ++i) {
-        if (i == idx) continue;                      /* 排除自身 */
-        if (emp[i].id == emp[i].boss_id) continue;  /* 排除頂層老闆 */
+        if (i == idx) continue;                      /* 排除自身 / exclude self */
+        if (emp[i].id == emp[i].boss_id) continue;  /* 排除頂層老闆 / exclude top-level boss */
         if (emp[i].boss_id == boss) {
             printf("%s %s\n", emp[i].firstname, emp[i].lastname);
         }
     }
 }
 
-/* 查詢上司鏈：從直屬上司往上，直到頂層老闆為止 */
+/* 查詢上司鏈：從直屬上司往上，直到頂層老闆為止 / query supervisor chain: walk up from direct boss to top-level boss */
 static void query_supervisors(int idx) {
     int cur = idx;
     while (emp[cur].id != emp[cur].boss_id) {
@@ -80,20 +98,20 @@ static void query_supervisors(int idx) {
     }
 }
 
-/* 查詢下屬：DFS 遞迴，按輸入順序走訪同層 */
+/* 查詢下屬：DFS 遞迴，按輸入順序走訪同層 / query subordinates: DFS recursion, visiting same level in input order */
 static void query_subordinates(int boss_idx) {
     for (int i = 0; i < n; ++i) {
         if (emp[i].boss_id == emp[boss_idx].id &&
             emp[i].id != emp[i].boss_id) {
             printf("%s %s\n", emp[i].firstname, emp[i].lastname);
-            query_subordinates(i);   /* 遞迴列出下屬的下屬 */
+            query_subordinates(i);   /* 遞迴列出下屬的下屬 / recursively list subordinates of this subordinate */
         }
     }
 }
 
 int main(void) {
     if (scanf("%d", &n) != 1) return 0;
-    /* 讀取所有員工資料 */
+    /* 讀取所有員工資料 / read all employee records */
     for (int i = 0; i < n; ++i) {
         if (scanf("%d %31s %31s %d",
                   &emp[i].id, emp[i].firstname,
@@ -104,7 +122,7 @@ int main(void) {
 
     int m;
     if (scanf("%d", &m) != 1) return 0;
-    /* 依序處理每筆查詢 */
+    /* 依序處理每筆查詢 / process each query in order */
     for (int q = 0; q < m; ++q) {
         char fn[NAMELEN], ln[NAMELEN];
         int k;

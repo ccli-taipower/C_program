@@ -22,23 +22,48 @@
  * 3. 換行後，再遍歷陣列，將偶數（num % 2 == 0）依序輸出，每個後面加空格。
  * 4. 最後換行。
  * 注意：負數的奇偶判斷：(-23) % 2 == -1 != 0，故為奇數，判斷時用 != 0。
+ *
+ * 【解題流程 / Solution Walkthrough】
+ *
+ * 中文說明：
+ * 1. 讀入整數 n，表示輸入數字個數。
+ * 2. 用迴圈讀入 n 個整數，存入陣列 nums[0..n-1]，保留原始順序。
+ * 3. 第一次遍歷陣列：對每個元素檢查 nums[i] % 2 != 0，
+ *    若為真（奇數），輸出該數字加空格。
+ *    遍歷結束後輸出換行。
+ * 4. 第二次遍歷陣列：對每個元素檢查 nums[i] % 2 == 0，
+ *    若為真（偶數或 0），輸出該數字加空格。
+ *    遍歷結束後輸出換行。
+ * 5. 關鍵細節：C 語言中負奇數（如 -23）的 % 運算結果為 -1（非零），
+ *    因此使用 != 0 判斷奇數可正確處理負數情況。
+ *
+ * English:
+ * 1. Read integer n as the count of input numbers.
+ * 2. Loop to read n integers into nums[0..n-1], preserving input order.
+ * 3. First pass over the array: for each element where nums[i] % 2 != 0
+ *    (odd), print the value followed by a space. Print newline at the end.
+ * 4. Second pass over the array: for each element where nums[i] % 2 == 0
+ *    (even or zero), print the value followed by a space. Print newline.
+ * 5. Key detail: in C, the modulo of a negative odd number (e.g., -23 % 2
+ *    equals -1, which is != 0), so the != 0 check correctly handles
+ *    negative odd numbers.
  */
 #include <stdio.h>
 
 int main(void) {
-    int n;          /* 輸入數字個數 */
-    int nums[1000]; /* 儲存所有數字 */
+    int n;          /* 輸入數字個數 / number of input integers */
+    int nums[1000]; /* 儲存所有數字 / store all numbers */
     int i;
 
-    /* 讀入數字個數 */
+    /* 讀入數字個數 / read the count of numbers */
     scanf("%d", &n);
 
-    /* 讀入所有數字 */
+    /* 讀入所有數字 / read all numbers */
     for (i = 0; i < n; i++) {
         scanf("%d", &nums[i]);
     }
 
-    /* 輸出奇數（trailing space） */
+    /* 輸出奇數（trailing space）/ print odd numbers (trailing space) */
     for (i = 0; i < n; i++) {
         if (nums[i] % 2 != 0) {
             printf("%d ", nums[i]);
@@ -46,7 +71,7 @@ int main(void) {
     }
     printf("\n");
 
-    /* 輸出偶數（trailing space） */
+    /* 輸出偶數（trailing space）/ print even numbers (trailing space) */
     for (i = 0; i < n; i++) {
         if (nums[i] % 2 == 0) {
             printf("%d ", nums[i]);

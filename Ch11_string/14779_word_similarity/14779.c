@@ -19,11 +19,36 @@
  * 條件 2：逐一嘗試從較長的字刪除每個位置的字元，確認是否等於較短的字。
  *
  * 單字最大長度：80 個字元。
+ *
+ * 【解題流程 / Solution Walkthrough】
+ *
+ * 中文說明：
+ * 1. 持續使用 scanf 讀入兩個單字 w1、w2，直到 EOF。
+ * 2. 計算兩字長度 len1、len2，依長度差分三種情況處理。
+ * 3. 若 len1 == len2，呼叫 check_swap(w1, w2)：
+ *    先確認兩字不完全相同，再對 w1 的每對相鄰字元嘗試交換，
+ *    複製到暫存陣列 tmp 後比對是否等於 w2。
+ * 4. 若 len1 == len2 + 1，呼叫 check_delete(w1, w2)：
+ *    對 w1 的每個字元位置嘗試跳過，建構縮短後的字串，比對是否等於 w2。
+ * 5. 若 len2 == len1 + 1，同上但以 w2 為較長的字刪除後比對 w1。
+ * 6. 長度差超過 1 的情形直接視為不相似（result 保持 0）。
+ * 7. 依據 result 輸出 "yes" 或 "no"。
+ *
+ * English:
+ * 1. Repeatedly read two words w1 and w2 with scanf until EOF.
+ * 2. Compute lengths len1 and len2, then handle three cases based on the difference.
+ * 3. Equal lengths → call check_swap(w1, w2): verify they are not identical,
+ *    then try every adjacent swap in a temporary copy and compare against w2.
+ * 4. len1 = len2 + 1 → call check_delete(w1, w2): for each position in w1,
+ *    build the string with that character removed and compare against w2.
+ * 5. len2 = len1 + 1 → same as above but delete from w2 and compare against w1.
+ * 6. Difference > 1 → not similar (result stays 0).
+ * 7. Print "yes" or "no" based on result.
  */
 #include <stdio.h>
 #include <string.h>
 
-#define MAXLEN 85   /* 單字最大緩衝區長度 */
+#define MAXLEN 85   /* 單字最大緩衝區長度 / max word buffer length */
 
 /*
  * check_swap：判斷是否可透過交換 a 中某對相鄰字元得到 b
@@ -34,20 +59,20 @@ static int check_swap(const char *a, const char *b) {
     int len = (int)strlen(a);
     char tmp[MAXLEN];
 
-    /* 若兩字完全相同，不算相似 */
+    /* 若兩字完全相同，不算相似 / identical words are not considered similar */
     if (strcmp(a, b) == 0) {
         return 0;
     }
 
-    /* 嘗試交換 a 中每對相鄰字元，看是否能得到 b */
+    /* 嘗試交換 a 中每對相鄰字元，看是否能得到 b / try every adjacent swap in a and check if it produces b */
     for (int i = 0; i < len - 1; i++) {
-        /* 複製 a 到 tmp */
+        /* 複製 a 到 tmp / copy a to tmp */
         strcpy(tmp, a);
-        /* 交換位置 i 和 i+1 */
+        /* 交換位置 i 和 i+1 / swap positions i and i+1 */
         char c = tmp[i];
         tmp[i] = tmp[i + 1];
         tmp[i + 1] = c;
-        /* 比較是否等於 b */
+        /* 比較是否等於 b / check if it equals b */
         if (strcmp(tmp, b) == 0) {
             return 1;
         }
@@ -65,9 +90,9 @@ static int check_delete(const char *longer, const char *shorter) {
     int slen = (int)strlen(shorter);
     char tmp[MAXLEN];
 
-    /* 嘗試刪除 longer 中每個位置的字元 */
+    /* 嘗試刪除 longer 中每個位置的字元 / try deleting each character position in longer */
     for (int i = 0; i < llen; i++) {
-        /* 建構刪除位置 i 後的字串 */
+        /* 建構刪除位置 i 後的字串 / build the string with position i removed */
         int k = 0;
         for (int j = 0; j < llen; j++) {
             if (j != i) {
@@ -75,35 +100,35 @@ static int check_delete(const char *longer, const char *shorter) {
             }
         }
         tmp[k] = '\0';
-        /* 比較是否等於 shorter */
+        /* 比較是否等於 shorter / check if it equals shorter */
         if (strcmp(tmp, shorter) == 0) {
             return 1;
         }
     }
-    (void)slen;   /* 避免未使用警告 */
+    (void)slen;   /* 避免未使用警告 / suppress unused-variable warning */
     return 0;
 }
 
 int main(void) {
-    char w1[MAXLEN], w2[MAXLEN];   /* 兩個輸入單字 */
+    char w1[MAXLEN], w2[MAXLEN];   /* 兩個輸入單字 / the two input words */
 
-    /* 逐行讀入一對單字，直到 EOF */
+    /* 逐行讀入一對單字，直到 EOF / read a pair of words per iteration until EOF */
     while (scanf("%s %s", w1, w2) == 2) {
         int len1 = (int)strlen(w1);
         int len2 = (int)strlen(w2);
-        int result = 0;   /* 預設不相似 */
+        int result = 0;   /* 預設不相似 / default: not similar */
 
         if (len1 == len2) {
-            /* 長度相同：檢查交換相鄰字元 */
+            /* 長度相同：檢查交換相鄰字元 / equal length: check adjacent-swap similarity */
             result = check_swap(w1, w2);
         } else if (len1 == len2 + 1) {
-            /* w1 比 w2 長 1：從 w1 刪除一個字元 */
+            /* w1 比 w2 長 1：從 w1 刪除一個字元 / w1 is 1 longer: delete one char from w1 */
             result = check_delete(w1, w2);
         } else if (len2 == len1 + 1) {
-            /* w2 比 w1 長 1：從 w2 刪除一個字元 */
+            /* w2 比 w1 長 1：從 w2 刪除一個字元 / w2 is 1 longer: delete one char from w2 */
             result = check_delete(w2, w1);
         }
-        /* 長度差超過 1：一定不相似 */
+        /* 長度差超過 1：一定不相似 / length difference > 1: definitely not similar */
 
         printf("%s\n", result ? "yes" : "no");
     }
