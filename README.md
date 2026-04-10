@@ -40,7 +40,6 @@ gcc -std=c99 -o out NNNNN.c -lm
 | [14684](Ch04_branch/14684_triangle_inequality/14684.c) | Triangle inequality | [🔗](https://acm.cs.nthu.edu.tw/problem/14684/) |
 | [14686](Ch04_branch/14686_multiple_determination/14686.c) | Multiple determination | [🔗](https://acm.cs.nthu.edu.tw/problem/14686/) |
 | [14688](Ch04_branch/14688_triangle_categories/14688.c) | Triangle categories | [🔗](https://acm.cs.nthu.edu.tw/problem/14688/) |
-| [14760](Ch04_branch/14760_line_through_3_18/14760.c) | Check if line passes through (3,18) | [🔗](https://acm.cs.nthu.edu.tw/problem/14760/) |
 
 ### Ch05 — 迴圈
 
@@ -93,7 +92,6 @@ gcc -std=c99 -o out NNNNN.c -lm
 | [14755](Ch09_pointer/14755_max_pointer_array/14755.c) | Maximum value via pointer array | [🔗](https://acm.cs.nthu.edu.tw/problem/14755/) |
 | [14756](Ch09_pointer/14756_upper_triangular_solver/14756.c) | Upper-triangular linear system solver | [🔗](https://acm.cs.nthu.edu.tw/problem/14756/) |
 | [14758](Ch09_pointer/14758_pointer_add_function/14758.c) | Pointer add function | [🔗](https://acm.cs.nthu.edu.tw/problem/14758/) |
-| [14761](Ch09_pointer/14761_min_pointer_array/14761.c) | Minimum value via pointer array | [🔗](https://acm.cs.nthu.edu.tw/problem/14761/) |
 
 ### Ch11 — 字串
 
@@ -102,7 +100,6 @@ gcc -std=c99 -o out NNNNN.c -lm
 | [14778](Ch11_string/14778_plural_forms/14778.c) | English plural forms | [🔗](https://acm.cs.nthu.edu.tw/problem/14778/) |
 | [14779](Ch11_string/14779_word_similarity/14779.c) | Word similarity judgment | [🔗](https://acm.cs.nthu.edu.tw/problem/14779/) |
 | [14802](Ch11_string/14802_add_large_integers/14802.c) | Add two large integers (string) | [🔗](https://acm.cs.nthu.edu.tw/problem/14802/) |
-| [14813](Ch11_string/14813_add_large_integers_quiz/14813.c) | Add two large integers (quiz) | [🔗](https://acm.cs.nthu.edu.tw/problem/14813/) |
 | [14820](Ch11_string/14820_database_server/14820.c) | Database server (SQL-like queries) | [🔗](https://acm.cs.nthu.edu.tw/problem/14820/) |
 | [14875](Ch11_string/14875_date_format_converter/14875.c) | Date format converter | [🔗](https://acm.cs.nthu.edu.tw/problem/14875/) |
 | [14877](Ch11_string/14877_word_sorting/14877.c) | Word sorting | [🔗](https://acm.cs.nthu.edu.tw/problem/14877/) |
@@ -113,7 +110,6 @@ gcc -std=c99 -o out NNNNN.c -lm
 |------|------|----------|
 | [14803](Ch14_structure/14803_subnet_determination/14803.c) | Subnet determination count | [🔗](https://acm.cs.nthu.edu.tw/problem/14803/) |
 | [14804](Ch14_structure/14804_bookshelf_management/14804.c) | Simulated bookshelf management | [🔗](https://acm.cs.nthu.edu.tw/problem/14804/) |
-| [14814](Ch14_structure/14814_count_ips_same_subnet/14814.c) | Count IPs in same subnet | [🔗](https://acm.cs.nthu.edu.tw/problem/14814/) |
 | [14819](Ch14_structure/14819_average_grade/14819.c) | Average grade (struct) | [🔗](https://acm.cs.nthu.edu.tw/problem/14819/) |
 | [14822](Ch14_structure/14822_tic_tac_toe_winner/14822.c) | Tic-Tac-Toe winner (struct version) | [🔗](https://acm.cs.nthu.edu.tw/problem/14822/) |
 
@@ -148,7 +144,6 @@ gcc -std=c99 -o out NNNNN.c -lm
 | [14847](Ch17_data_structure/14847_bst_subtree_size/14847.c) | BST subtree size computation | [🔗](https://acm.cs.nthu.edu.tw/problem/14847/) |
 | [14849](Ch17_data_structure/14849_bookshelf_linked_list/14849.c) | Bookshelf management (linked list) | [🔗](https://acm.cs.nthu.edu.tw/problem/14849/) |
 | [14859](Ch17_data_structure/14859_kth_smallest_bst/14859.c) | k-th smallest in BST | [🔗](https://acm.cs.nthu.edu.tw/problem/14859/) |
-| [14863](Ch17_data_structure/14863_kth_biggest_bst/14863.c) | k-th biggest in BST | [🔗](https://acm.cs.nthu.edu.tw/problem/14863/) |
 | [14864](Ch17_data_structure/14864_map_color/14864.c) | Map color (graph coloring) | [🔗](https://acm.cs.nthu.edu.tw/problem/14864/) |
 | [14865](Ch17_data_structure/14865_employee_network/14865.c) | Employee network | [🔗](https://acm.cs.nthu.edu.tw/problem/14865/) |
 | [14871](Ch17_data_structure/14871_queue_operations/14871.c) | Queue operations | [🔗](https://acm.cs.nthu.edu.tw/problem/14871/) |
